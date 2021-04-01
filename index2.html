@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edito de memes</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style2.css">
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header-title">Generador de Memes</h1>
+      <div class="header-buttons">
+        <button id="button-img"><i class="far fa-image"></i>Imagen</button>
+        <button id="button-text"><i class="fas fa-font"></i>Texto</button>
+        <button><i class="fas fa-lightbulb"></i>Modo Claro</button>
+      </div>
+    </header>
+    
+    <main>
+      <div class="meme-container">
+        <p class="meme-text">Texto de arriba</p>
+        <img src="" alt="" class="meme-img">
+        <p class="meme-text">Texto de abajo</p>
+      </div>
+      <button><i class="fas fa-download"></i> descargar meme</button>
+    </main>
+    <aside class="panel" id="panel">
+      <button class="panel-close" id="button-close"><i class="fas fa-times"></i></button>
+      <section id="panel-img" class="panel-img">
+        <h3>Imagen</h3>
+        <input type="text">
+      </section>
+      <section id="panel-text" class="panel-text">
+        <h3>Texto</h3>
+        <input type="text">
+      </section>
+    </aside>
+    <script>
+      const panel = document.querySelector("#panel");
+      const panelImg = document.querySelector("#panel-img");
+      const panelText = document.querySelector("#panel-text");
+
+      const buttonClose = document.querySelector("#button-close");
+      const buttonImg = document.querySelector("#button-img");
+      const buttonText = document.querySelector("#button-text");
+
+
+      //cuando hago click en boton de cerra se cierra el panel(aside completo)
+      //agregar la clase ocular
+      
+      buttonClose.addEventListener("click",()=>{
+        panel.classList.add("ocultar");
+      });
+
+      // cuando hago click en el boton de imagen o en el boton texto debe verse el panel
+      // quitar la clase ocular
+
+      // cuando click al boton text abrir el panel,se ve la section de texto
+      // y se oculta la imagen
+      // se ve img y texto 
+      // se ve img
+      // 
+      buttonText.addEventListener("click",()=>{
+        panel.classList.remove("ocultar");
+        panelImg.classList.add("ocultar");
+        panelText.classList.remove("ocultar");
+      });
+
+      buttonImg.addEventListener("click",()=>{
+        panel.classList.remove("ocultar");
+        panelText.classList.add("ocultar");
+        panelImg.classList.remove("ocultar");
+      })
+    </script>
+  </body>
+</html>

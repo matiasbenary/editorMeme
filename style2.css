@@ -1,0 +1,39 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header{
+  background-color: #e0e0e0;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.header-title{
+  color:#424242;
+  font-size: 24px;
+}
+
+.panel{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #222;
+  color:#FFF;
+  width: 100%;
+  height: 100%;
+}
+
+.panel-close{
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+
+.ocultar{
+  display:none;
+}
