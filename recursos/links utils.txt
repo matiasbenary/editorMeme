@@ -1,0 +1,7 @@
+Libreria para descargar meme
+
+https://github.com/tsayen/dom-to-image
+
+CDN:
+https://cdnjs.com/libraries/dom-to-image
+https://cdnjs.com/libraries/FileSaver.js
