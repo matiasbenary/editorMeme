@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style></style>
+</head>
+<body>
+  <input type="text" placeholder="ingrese una imagen" id="inputImg">
+  <div id="imgContainer">
+    <h3>Soy un titulo</h3>
+    <img src="" alt="" id="img">
+  </div>
+
+  <button id="download">Descargar Imagen</button>
+  <div>
+    <h3 class="panel-control-title">FILTROS</h3>
+    <div>
+      <label for="brightness-slider">BRILLO</label>
+      <input type="range" id="brightness-slider" min="0" max="1" value="1" step="0.1">
+    </div>
+    <div >
+      <label for="opacity-slider">OPACIDAD</label>
+      <input type="range" id="opacity-slider" min="0" max="1" value="1" step="0.1">
+    </div>
+    <div >
+      <label for="contrast-slider">CONTRASTE</label>
+      <input type="range" id="contrast-slider" min="100" max="1000" value="100">
+    </div>
+    <div >
+      <label for="blur-slider">DESENFOQUE</label>
+      <input type="range" id="blur-slider" min="0" max="10" value="0" step="0.1">
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous"></script>
+  <script>
+    const input = document.getElementById("inputImg");
+    const img = document.getElementById("img");
+    const imgContainer = document.getElementById("imgContainer");
+
+    //sliders
+    const brightness = document.getElementById("brightness-slider");
+    const opacity = document.getElementById("opacity-slider");
+    const contrast = document.getElementById("contrast-slider");
+    const blur = document.getElementById("blur-slider");
+
+    //button
+    const download = document.getElementById("download");
+
+    //Cambio de imagen
+    img.src = "https://images.adsttc.com/media/images/5d34/e507/284d/d109/5600/0240/newsletter/_FI.jpg?1563747560";
+ 
+    input.addEventListener("change",()=>{
+      img.src = input.value;
+    });
+
+    //Actualizacion de filtros
+    const updateFilter = () => {
+      img.style.filter = `brightness(${brightness.value}) opacity(${opacity.value}) contrast(${contrast.value}%) blur(${blur.value}px)`;
+    }
+
+    brightness.addEventListener("change",updateFilter);
+
+    opacity.addEventListener("change",updateFilter);
+
+    contrast.addEventListener("change",updateFilter);
+
+    blur.addEventListener("change",updateFilter);
+
+    //Descarga de imagen
+    download.addEventListener("click",()=>{
+      domtoimage.toBlob(imgContainer)
+        .then(function (blob) {
+        window.saveAs(blob, 'casa.png');
+      });
+    });
+
+  </script>
+</body>
+</html>

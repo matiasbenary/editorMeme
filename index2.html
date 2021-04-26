@@ -26,12 +26,14 @@
     </header>
 
     <main>
-      <div class="meme-container">
+      <div class="meme-container" id="meme-container">
         <p class="meme-text">Texto de arriba</p>
-        <img src="" alt="" class="meme-img" />
+        <img src="" alt="" class="meme-img" id="meme-img" />
         <p class="meme-text">Texto de abajo</p>
       </div>
-      <button><i class="fas fa-download"></i> descargar meme</button>
+      <button id="download">
+        <i class="fas fa-download"></i> descargar meme
+      </button>
     </main>
     <aside class="panel" id="panel">
       <button class="panel-close" id="button-close">
@@ -46,6 +48,16 @@
         <input type="text" />
       </section>
     </aside>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+      integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+      integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+      crossorigin="anonymous"
+    ></script>
     <script>
       const body = document.querySelector('body');
 
@@ -53,13 +65,25 @@
       const panelImg = document.querySelector('#panel-img');
       const panelText = document.querySelector('#panel-text');
 
+      const memeContainer = document.querySelector('#meme-container');
+      const memeImg = document.querySelector('#meme-img');
+
       const buttonClose = document.querySelector('#button-close');
       const buttonImg = document.querySelector('#button-img');
       const buttonText = document.querySelector('#button-text');
       const buttonTheme = document.querySelector('#button-theme');
+      const buttonDowload = document.querySelector('#download');
 
+      memeImg.src =
+        'https://www.hola.com/imagenes/estar-bien/20180925130054/consejos-para-cuidar-a-un-gatito-recien-nacido-cs/0-601-526/cuidardgatito-t.jpg';
       //cuando hago click en boton de cerra se cierra el panel(aside completo)
       //agregar la clase ocular
+
+      buttonDowload.addEventListener('click', () => {
+        domtoimage.toBlob(memeContainer).then(function (blob) {
+          window.saveAs(blob, 'my-node.png');
+        });
+      });
 
       buttonClose.addEventListener('click', () => {
         panel.classList.add('ocultar');
